@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+
+<html lang="en-CA">
+    <head>
+        <link href="styles/style.css" rel ="stylesheet"/>
+        <title>
+            Calculator
+        </title>
+    </head>
+    <body>
+        <div class="Calculator">
+            <p class="display">00</p>
+            <div class="buttons">
+                <button class="digit">1</button>
+                <button class="digit">2</button>
+                <button class="digit">3</button>
+                <button class="digit">4</button>
+                <button class="digit">5</button>
+                <button class="digit">6</button>
+                <button class="digit">7</button>
+                <button class="digit">8</button>
+                <button class="digit">9</button>
+                <button class="digit">0</button>
+                <div class="operators">
+                    <button class="operator">+</button>
+                    <button class="operator">-</button>
+                    <button class="operator">&times</button>
+                    <button class="operator">&divide</button>
+                </div>
+                <button class="equal">=</button>
+                <button class="clear">AC</button>
+    
+            </div>
+        </div>
+        <script> 
+            const num_op = [];
+
+            let clear_state = false;
+
+            const disp_element = document.querySelector("p");
+
+            digits = document.querySelectorAll(".digit");
+            
+            for (let digit of digits) {
+                digit.addEventListener("click", function (e) {
+                    if (disp_element.textContent === "00" || clear_state){
+                        disp_element.textContent = "";
+                        clear_state = false;
+                    }
+                    disp_element.textContent += this.textContent;
+                    
+                })
+            }
+
+            operators = document.querySelector(".operators");
+
+            const clear = document.querySelector(".clear");
+            clear.addEventListener("click", handle_clear);
+
+            function handle_op(event){
+                // console.log(event.target);
+                if (event.target.tagName == "BUTTON"){
+                    // if event got triggered by an actual button click and not just a random click in the div
+                        let num1;
+                    if (num_op.length === 0) {
+                        num1 = Number(disp_element.textContent);
+                        num_op[0] = num1;
+                        // num_op[1] = e.target.textContent;
+                    }
+                    else {
+                        // console.log("here");
+                        let num2 = Number(disp_element.textContent);
+                        // console.log(num2);
+                        num1 = num_op[0];
+                        let op = num_op[1];
+                        let result = do_op(num1, num2, op);
+                        num_op[0] = result;
+                        // num_op[1] = e.target.textContent;
+                    }
+                    num_op[1] = event.target.textContent;
+
+                    clear_disp();
+                }
+
+            }
+
+            function clear_disp(){
+                disp_element.textContent = "";
+            }
+
+            function handle_clear(){
+                clear_disp();
+                num_op.length = 0;
+            }
+
+            function do_op(num1, num2, op){
+                switch (op) {
+                    case '+': 
+                        return num1 + num2;
+                    case '-':
+                        return num1 - num2;
+                    case '\u00D7': 
+                        return num1 * num2;
+                    case '\u00F7':
+                        if (num2 != 0)
+                            return num1/num2;
+                        else
+                            return "INF";
+                    default:
+                        return "NA";
+                }
+            }
+
+            function handle_eq(event) {
+                if (num_op.length === 0){
+                    return;
+                }
+                let num1 = num_op.shift();
+                let op = num_op.shift();
+                let num2 = Number(disp_element.textContent);
+                let result = do_op(num1,num2,op)
+                clear_disp()
+                disp_element.textContent = result;
+                clear_state = true;
+            }
+
+            operators.addEventListener("click", handle_op);
+
+            const equal = document.querySelector(".equal");
+            equal.addEventListener("click", handle_eq)
+            
+            </script>
+    </body>
+
+</html>
