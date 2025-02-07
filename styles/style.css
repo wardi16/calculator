@@ -16,12 +16,30 @@ body{
     height: 300px;
     margin: 0;
     border: 5px inset hotpink;
+    display: grid;
+    /* grid-template-columns: 1fr 1fr 1fr 1fr; */
+    grid-template-columns: repeat(4, 1fr);
+
+    
+}
+
+.operators{
+    display: contents;
+    /* grid-template-columns: 1fr 1fr 1fr 1fr; */
+    
 }
 
 .operator{
     background-color: darkmagenta;
-    border:
+    display: ;
+    /* display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr; */
+
     
+}
+
+button:hover {
+    background-color: hotpink;
 }
 
 .Calculator{
@@ -32,6 +50,6 @@ body{
     align-items: center;
 }
 
-button:hover {
-    background-color: hotpink;
-}
+/* Buttons{
+    font-size: 20px;
+} */
