@@ -12,16 +12,6 @@
             <p class="display">00</p>
             <div class="buttons">
                <div class="numbers">
-                    <button class="digit">1</button>
-                    <button class="digit">2</button>
-                    <button class="digit">3</button>
-                    <button class="digit">4</button>
-                    <button class="digit">5</button>
-                    <button class="digit">6</button>
-                    <button class="digit">7</button>
-                    <button class="digit">8</button>
-                    <button class="digit">9</button>
-                    <button class="digit">0</button>
                </div> 
                <div class="operators">
                     <button class="operator">+</button>
@@ -42,6 +32,13 @@
             const disp_element = document.querySelector("p");
             
             digits = document.querySelector(".numbers");
+            
+            for (let i = 0; i < 10; i++){
+                const digit = document.createElement("button");
+                digit.classList.add("digit");
+                digit.textContent = i;
+                digits.appendChild(digit);
+            }    
 
             digits.addEventListener("click", handle_num);
 
