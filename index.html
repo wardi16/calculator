@@ -11,17 +11,19 @@
         <div class="Calculator">
             <p class="display">00</p>
             <div class="buttons">
-                <button class="digit">1</button>
-                <button class="digit">2</button>
-                <button class="digit">3</button>
-                <button class="digit">4</button>
-                <button class="digit">5</button>
-                <button class="digit">6</button>
-                <button class="digit">7</button>
-                <button class="digit">8</button>
-                <button class="digit">9</button>
-                <button class="digit">0</button>
-                <div class="operators">
+               <div class="numbers">
+                    <button class="digit">1</button>
+                    <button class="digit">2</button>
+                    <button class="digit">3</button>
+                    <button class="digit">4</button>
+                    <button class="digit">5</button>
+                    <button class="digit">6</button>
+                    <button class="digit">7</button>
+                    <button class="digit">8</button>
+                    <button class="digit">9</button>
+                    <button class="digit">0</button>
+               </div> 
+               <div class="operators">
                     <button class="operator">+</button>
                     <button class="operator">-</button>
                     <button class="operator">&times</button>
@@ -38,24 +40,30 @@
             let clear_state = false;
 
             const disp_element = document.querySelector("p");
-
-            digits = document.querySelectorAll(".digit");
             
-            for (let digit of digits) {
-                digit.addEventListener("click", function (e) {
-                    if (disp_element.textContent === "00" || clear_state){
-                        disp_element.textContent = "";
-                        clear_state = false;
-                    }
-                    disp_element.textContent += this.textContent;
-                    
-                })
-            }
+            digits = document.querySelector(".numbers");
+
+            digits.addEventListener("click", handle_num);
+
 
             operators = document.querySelector(".operators");
+            // using event delegation b/c there's multiple elements within the .operators class
+            // added event listener to parent div
+            operators.addEventListener("click", handle_op);
 
             const clear = document.querySelector(".clear");
             clear.addEventListener("click", handle_clear);
+
+
+            function handle_num(event){
+               if (event.target.tagName == "BUTTON"){
+                if (disp_element.textContent === "00" || clear_state){
+                    disp_element.textContent = "";
+                    clear_state = false;
+                }
+                   disp_element.textContent += event.target.textContent;
+               }
+            }
 
             function handle_op(event){
                 // console.log(event.target);
@@ -124,7 +132,6 @@
                 clear_state = true;
             }
 
-            operators.addEventListener("click", handle_op);
 
             const equal = document.querySelector(".equal");
             equal.addEventListener("click", handle_eq)
