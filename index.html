@@ -21,7 +21,7 @@
                 </div>
                 <button class="equal">=</button>
                 <button class="clear">AC</button>
-    
+                <button class="sign">+/-</button> 
             </div>
         </div>
         <script> 
@@ -50,6 +50,22 @@
 
             const clear = document.querySelector(".clear");
             clear.addEventListener("click", handle_clear);
+            
+            const sign_toggle = document.querySelector(".sign");
+            sign_toggle.addEventListener("click", handle_sign);
+
+            const default_sign = '+';
+            let sign = default_sign;
+
+            function handle_sign(){
+                if (sign == '+'){
+                    // toggle negative
+                    sign = '-';
+                }
+                else{
+                    sign = '+';
+                }
+            }
 
 
             function handle_num(event){
@@ -95,6 +111,7 @@
 
             function handle_clear(){
                 clear_disp();
+                disp_element.textContent = "00";
                 num_op.length = 0;
             }
 
