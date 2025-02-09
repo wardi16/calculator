@@ -54,16 +54,23 @@
             const sign_toggle = document.querySelector(".sign");
             sign_toggle.addEventListener("click", handle_sign);
 
+            const equal = document.querySelector(".equal");
+            equal.addEventListener("click", handle_eq)
+
             const default_sign = '+';
             let sign = default_sign;
 
             function handle_sign(){
-                if (sign == '+'){
-                    // toggle negative
-                    sign = '-';
-                }
-                else{
-                    sign = '+';
+                if (!(disp_element.textContent == "" || disp_element.textContent == "00" || disp_element.textContent == "0")){
+                    if (sign == '+'){
+                        // toggle negative
+                        sign = '-';
+                        disp_element.textContent = "-" + disp_element.textContent;
+                    }
+                    else{
+                        sign = '+';
+                        disp_element.textContent = disp_element.textContent.slice(1);
+                    }
                 }
             }
 
@@ -112,6 +119,7 @@
             function handle_clear(){
                 clear_disp();
                 disp_element.textContent = "00";
+                sign = default_sign;
                 num_op.length = 0;
             }
 
@@ -147,8 +155,6 @@
             }
 
 
-            const equal = document.querySelector(".equal");
-            equal.addEventListener("click", handle_eq)
             
             </script>
     </body>
