@@ -61,8 +61,8 @@
             let sign = default_sign;
 
             function handle_sign(){
-                if (!(disp_element.textContent == "" || disp_element.textContent == "00" || disp_element.textContent == "0")){
-                    if (sign == '+'){
+                if (!(disp_element.textContent === "" || disp_element.textContent === "00" || disp_element.textContent === "0")){
+                    if (sign === '+'){
                         // toggle negative
                         sign = '-';
                         disp_element.textContent = "-" + disp_element.textContent;
@@ -76,7 +76,7 @@
 
 
             function handle_num(event){
-               if (event.target.tagName == "BUTTON"){
+               if (event.target.tagName === "BUTTON"){
                 if (disp_element.textContent === "00" || clear_state){
                     disp_element.textContent = "";
                     clear_state = false;
@@ -87,7 +87,7 @@
 
             function handle_op(event){
                 // console.log(event.target);
-                if (event.target.tagName == "BUTTON"){
+                if (event.target.tagName === "BUTTON"){
                     // if event got triggered by an actual button click and not just a random click in the div
                         let num1;
                     if (num_op.length === 0) {
