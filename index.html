@@ -27,7 +27,7 @@
         <script> 
             const num_op = [];
 
-            let clear_state = false;
+            let clear_state = true;
 
             const disp_element = document.querySelector("p");
             
@@ -61,7 +61,8 @@
             let sign = default_sign;
 
             function handle_sign(){
-                if (!(disp_element.textContent === "" || disp_element.textContent === "00" || disp_element.textContent === "0")){
+                // TODO: Add these conditions to a list, getting unwieldy
+                if (!(disp_element.textContent === "" || disp_element.textContent === "00" || disp_element.textContent === "0" || disp_element.textContent === "INF")){
                     if (sign === '+'){
                         // toggle negative
                         sign = '-';
@@ -77,8 +78,8 @@
 
             function handle_num(event){
                if (event.target.tagName === "BUTTON"){
-                if (disp_element.textContent === "00" || clear_state){
-                    disp_element.textContent = "";
+                if (clear_state){
+                    clear_disp();
                     clear_state = false;
                 }
                    disp_element.textContent += event.target.textContent;
@@ -90,24 +91,33 @@
                 if (event.target.tagName === "BUTTON"){
                     // if event got triggered by an actual button click and not just a random click in the div
                         let num1;
+                    // TODO: can i replace with if (clear_state) to be more clear??
                     if (num_op.length === 0) {
                         num1 = Number(disp_element.textContent);
                         num_op[0] = num1;
+                        sign = default_sign;
                         // num_op[1] = e.target.textContent;
                     }
                     else {
+                        // a lot of repetitiion here and in handle_eq, think this could be better organized
                         // console.log("here");
                         let num2 = Number(disp_element.textContent);
                         // console.log(num2);
                         num1 = num_op[0];
                         let op = num_op[1];
+                       
                         let result = do_op(num1, num2, op);
                         num_op[0] = result;
                         // num_op[1] = e.target.textContent;
+                        if (result === 'INF')
+                            sign = default_sign;
+                        else
+                            sign = result >= 0 ? '+' : '-';
                     }
                     num_op[1] = event.target.textContent;
 
                     clear_disp();
+                    
                 }
 
             }
@@ -119,6 +129,7 @@
             function handle_clear(){
                 clear_disp();
                 disp_element.textContent = "00";
+                clear_state = true;
                 sign = default_sign;
                 num_op.length = 0;
             }
@@ -152,6 +163,10 @@
                 clear_disp()
                 disp_element.textContent = result;
                 clear_state = true;
+                if (result === 'INF')
+                    sign = default_sign;
+                else
+                    sign = result >= 0 ? '+' : '-';
             }
 
 
