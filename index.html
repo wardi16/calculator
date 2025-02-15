@@ -23,6 +23,7 @@
                 <button class="equal">=</button>
                 <button class="clear">AC</button>
                 <button class="sign">+/-</button> 
+                <button class="back">←</button>
             </div>
         </div>
         <script> 
@@ -58,8 +59,20 @@
             const equal = document.querySelector(".equal");
             equal.addEventListener("click", handle_eq)
 
+            const back = document.querySelector(".back");
+            back.addEventListener("click", handle_back);
+
             const default_sign = '+';
             let sign = default_sign;
+
+            function handle_back(){
+                if (!(disp_element.textContent === "00" || disp_element.textContent === "")){
+                    if(disp_element.textContent === "-"){
+                        sign = default_sign;
+                    }
+                    disp_element.textContent = disp_element.textContent.slice(0,-1);
+                }
+            }
 
             function handle_sign(){
                 // TODO: Add these conditions to a list, getting unwieldy
