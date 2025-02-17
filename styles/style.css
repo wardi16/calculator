@@ -2,13 +2,19 @@ body{
     background-color:blanchedalmond ;
 }
 .display{
-    background-color: green;
+    background-color: #a4d1a4;
     width: 350px;
     margin:0;
     height: 40px;
     border: 5px outset darkslategrey;
     text-align: right;
     font-size: 1.25em;
+    font-family: "Doto", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 1000;
+    font-style: normal;
+    font-variation-settings:
+      "ROND" 200;
 }
 
 .buttons{
@@ -21,8 +27,7 @@ body{
     grid-template-columns: repeat(4,1fr);
     grid-template-rows: repeat(5,1fr);
     grid-gap: 1px;
-    grid-auto-flow:dense;
-    
+    grid-auto-flow:dense; 
 }
 
 .numbers{
@@ -30,40 +35,65 @@ body{
     grid-column: span 3;
 }
 
+.digit{
+    font-size: 1.2em;
+    font-weight: 100;
+    background-color:#9E9E9E
+}
+
 .operators{
-    display: contents;
+    display: contents;    
 }
 
 
 .decimal{
     grid-column: 2;
     grid-row: 4;
+    font-weight: 1000;
+}
+
+.back, .clear{
+    background-color: #445760de
+}
+
+.decimal,.sign{
+    background-color: #a13ca1
 }
 
 .clear{
     grid-column: 4;
     grid-row: 2;
-    
+    font-size: 1.2em;
+    font-weight: 100;   
 }
 
 .back{
    grid-column: 4;
    grid-row: 1;
+   font-size: 1.5em;
+   font-weight: 100;
 }
 
 .sign{
     grid-column: 3;
-    grid-row: 4
+    grid-row: 4;
+    font-size: 1.2em;
+    font-weight: 100;
 }
 
 .equal{
     grid-column: 4;
     grid-row: 3/5;
+    background-color: lightseagreen;
+    font-size: 1.5em;
+    font-weight: 100;
 }
 
 .operator{
-    background-color: darkmagenta;
+    background-color: lightpink;
     grid-row: 5;
+    font-weight: 500;
+    font-size: 1.5em;
 }
 
 .Calculator{
