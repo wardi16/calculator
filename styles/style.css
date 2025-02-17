@@ -42,6 +42,7 @@ body{
 
 .clear{
     grid-column: 4;
+    grid-row: 2;
     
 }
 
@@ -57,7 +58,7 @@ body{
 
 .equal{
     grid-column: 4;
-    grid-row: 2/4;
+    grid-row: 3/5;
 }
 
 .operator{
