@@ -8,6 +8,7 @@ body{
     height: 40px;
     border: 5px outset darkslategrey;
     text-align: right;
+    font-size: 1.25em;
 }
 
 .buttons{
@@ -16,13 +17,39 @@ body{
     height: 300px;
     margin: 0;
     border: 5px inset hotpink;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    /* grid-auto-flow:dense; */
+    
 }
+
+.numbers{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-gap: 1px; 
+    grid-column: span 3;
+    grid-row: span 3;
+    /* grid-auto-flow:dense; */
+}
+
+.operators{
+    
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 1px;
+    grid-column: span 4;
+    
+}
+
+/* .sign{
+    grid-column:3;
+    grid-row:3;
+} */
 
 .operator{
     background-color: darkmagenta;
-    border:
-    
 }
+
 
 .Calculator{
     border: 10px groove black;
